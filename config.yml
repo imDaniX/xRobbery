@@ -1,0 +1,36 @@
+region:
+    world: world
+    bank_rg: bank
+police:
+    #minimal count of policemen to start
+    count: 3
+    #location for police's tp
+    loc: world,0,0,0,0,0
+    #do you need to tp policemen?
+    do_teleport: true
+mafia:
+    #minimal count of mafia members to start
+    count: 3
+    leader:
+        #nick of leader
+        nick: "mafiozi"
+        #can mafia players hit leader?
+        damage: false
+        #do you need to use permission 'xrobbery.mafia.leader' instead of nick?
+        by_permission: false
+    #location for mafia's tp
+    loc: world,0,0,0,0,0
+robbery:
+    #are admins ignored as perm-leader, mafia, police?
+    admin_ignore: true
+    #how long will robbery take? (seconds)
+    time: 600
+    #how much time between two robberies? (seconds)
+    delay: 600
+    #last robbery time in seconds. Don't touch this.
+    last_rob: 0
+    #random value of many for robbery(leave only one for non-random)
+    money:
+    - 80000
+    - 100000
+    - 120000

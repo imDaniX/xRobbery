@@ -1,0 +1,9 @@
+name: xRobbery
+main: mew.imDaniX.Robbery.RobberyMain
+version: 1.0
+author: imDaniX
+description: Simple robbery for RP servers
+depend: [WorldGuard, Vault]
+commands:
+  xrobbery:
+    aliases: [robbery, rob]

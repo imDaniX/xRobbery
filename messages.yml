@@ -1,0 +1,24 @@
+command:
+    help:
+    - '&a/{label} &7- начать ограбление'
+    - '&a/{label} setloc <m|p> &7- устанвока тп точки'
+    - '&a/{label} setrg <рг> &7- установка региона банка'
+    - '&a/{label} leader <ник> &7- установить лидера мафии'
+    - '&a/{label} reload &7- перезагрузить конфиг-файл'
+    reload: '&6&lxRobbery&8> &7Конфиг-файл успешно перезагружен'
+    leader: '&6&lxRobbery&8> &7Вы изменили лидера мафии на &e{nick}'
+    setloc:
+        mafia: '&6&lxRobbery&8> &7Вы установили точку телепортации мафии &e{location}'
+        police: '&6&lxRobbery&8> &7Вы установили точку телепортации полиции &e{location}'
+    setrg: '&6&lxRobbery&8> &7Вы установилки регион банка {region}'
+    arg_error: '&6&lxRobbery&8> &cНеправильный аргумент! Введите &e/{label} help&c для списка команд'
+    perm_error: '&6&lxRobbery&8> &cУ вас недостаточно прав!'
+rob:
+    start: '&6&lxRobbery&8> &fНачалось ограбление банка!'
+    finish:
+        success: '&6&lxRobbery&8> &fОграбление прошло успешно! Банк был ограблен на &e{money}&f.'
+        failed: '&6&lxRobbery&8> &fОграбление было предовращено! Банк не был ограблен.'
+    delay_fail: '&6&lxRobbery&8> &cЗадержка между ограблениями ещё не истекла! &7Подождите ещё &e{time} сек.'
+    not_leader: '&6&lxRobbery&8> &cВы не лидер фракции мафии!'
+    count_fail: '&6&lxRobbery&8> &cНедостаточно игроков для начала ограбления!'
+    already_on: '&6&lxRobbery&8> &cОграбление уже идёт!'
