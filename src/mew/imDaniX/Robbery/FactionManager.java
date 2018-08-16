@@ -168,5 +168,4 @@ public String getMessage(String s) {return Utils.clr(messages.getConfig().getStr
 public List<String> getHelp(){return messages.getConfig().getStringList("command.help");}
 public World getWorld() {return world;}
 public Location getLoc(boolean mafia) {return mafia?mafiaLoc:policeLoc;}
-
 }
