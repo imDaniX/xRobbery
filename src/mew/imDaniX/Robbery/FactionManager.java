@@ -58,10 +58,13 @@ private void init() {
 //Robbing stuff
 public void tickRobbing() {
 	timer+=5;
-	if(timer>=robTime) finishRobbing(true);
+	if(timer>=robTime)
+		finishRobbing(true);
 }
 
-public boolean isRobbing() {return robbing;}
+public boolean isRobbing() {
+	return robbing;
+}
 
 public void startRobbing() {
 	Bukkit.broadcastMessage(getMessage("rob.start"));
@@ -128,29 +131,31 @@ public void reloadConfigs() {
 
 public void setLoc(Location loc, boolean mafia) {
 	if(mafia) {
+		this.mafiaLoc = loc;
 		config.getConfig().set("mafia.loc", Utils.locToString(loc));
-		this.mafiaLoc = loc; return;
+		config.saveConfig();
+		return;
 	}
-	config.getConfig().set("police.loc", Utils.locToString(loc));
 	this.policeLoc = loc; 
+	config.getConfig().set("police.loc", Utils.locToString(loc));
 	config.saveConfig();
 }
 
 public void setRg(String bankRg) {
-	config.getConfig().set("bank_rg", bankRg);
 	this.bankRg = bankRg;
+	config.getConfig().set("bank_rg", bankRg);
 	config.saveConfig();
 }
 
 public void setLeader(String leader) {
-	config.getConfig().set("mafia.leader.nick", leader);
 	this.leader = leader;
+	config.getConfig().set("mafia.leader.nick", leader);
 	config.saveConfig();
 }
 
 public void setLastRob(long lastRob) {
-	config.getConfig().set("robbery.last_rob", lastRob);
 	this.lastRob=lastRob;
+	config.getConfig().set("robbery.last_rob", lastRob);
 	config.saveConfig();
 }
 
