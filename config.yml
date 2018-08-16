@@ -16,8 +16,6 @@ mafia:
         nick: "mafiozi"
         #can mafia players hit leader?
         damage: false
-        #do you need to use permission 'xrobbery.mafia.leader' instead of nick?
-        by_permission: false
     #location for mafia's tp
     loc: world,0,0,0,0,0
 robbery:

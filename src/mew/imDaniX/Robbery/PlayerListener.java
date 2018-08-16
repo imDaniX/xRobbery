@@ -52,21 +52,6 @@ public void onPlayerLeave(PlayerQuitEvent e) {
 
 private void start() {
 Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() { public void run() { if(fm.isRobbing()) {
-	if(fm.getPermLeader()) {
-		for(Player p:Bukkit.getOnlinePlayers()) {
-			if(fm.isLeader(p)){
-				boolean notFound=true;
-				ApplicableRegionSet ar=rgManager.getApplicableRegions(p.getLocation());
-				for(ProtectedRegion pr:ar) {
-					if(pr.getId().equals(fm.getBankRg())) {
-						notFound=false;
-						break;
-					}
-				}
-				if(notFound) fm.finishRobbing(false);
-			}
-		}
-	} else {
 		Player p=Bukkit.getPlayer(fm.getLeader());
 		ApplicableRegionSet ar=rgManager.getApplicableRegions(p.getLocation());
 		boolean notFound=true;
@@ -79,5 +64,5 @@ Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable
 		if(notFound) fm.finishRobbing(false);
 	}
 	if(fm.isRobbing()) fm.tickRobbing();
-}}}, 0L, 100L);}
+}}, 0L, 100L);}
 }

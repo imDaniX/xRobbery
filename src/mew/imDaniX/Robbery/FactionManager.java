@@ -16,7 +16,7 @@ public class FactionManager {
 private Location mafiaLoc, policeLoc;
 private String bankRg, leader;
 private long delay, lastRob;
-private boolean permLeader, robbing, adminIgnore, leaderDmg, policeTp;
+private boolean robbing, adminIgnore, leaderDmg, policeTp;
 private World world;
 
 private int mafiaCount, policeCount, timer, robTime;
@@ -44,7 +44,6 @@ private void init() {
 	mafiaCount=cfg.getInt("mafia.count"); 
 	leader=cfg.getString("mafia.leader.nick");
 	leaderDmg=cfg.getBoolean("mafia.leader.damage");
-	permLeader=cfg.getBoolean("mafia.leader.by_permission");
 
 	robTime=cfg.getInt("robbery.time");
 	delay=cfg.getLong("robbery.delay");
@@ -96,13 +95,8 @@ public List<Player> findPlayers(boolean mafia){
 	return players;
 }
 
-//Find random leader
+//Find leader
 public UUID findLeader(){
-	List<Player> players=new ArrayList<>();
-	if(permLeader) {
-		for(Player p:Bukkit.getOnlinePlayers())
-			if(p.hasPermission("xrob.mafia.leader")&&isIgnored(p)==false) players.add(p);
-		return Utils.listRandom(players).getUniqueId();} else
 	return Bukkit.getPlayer(leader).getUniqueId();
 }
 
@@ -119,7 +113,6 @@ public long untilNext() {
 }
 
 public boolean isLeader(Player p) {
-	if(permLeader) return (p.hasPermission("xrob.mafia.leader")&&isIgnored(p)==false);
 	return p.getName().equals(leader);
 }
 
@@ -163,7 +156,6 @@ public void setLastRob(long lastRob) {
 
 //Some getters
 public boolean isPoliceTp() {return policeTp;}
-public boolean getPermLeader() {return permLeader;}
 public boolean getLeaderDmg() {return leaderDmg;}
 public String getLeader() {return leader;}
 public String getBankRg() {return bankRg;}
