@@ -23,7 +23,7 @@ public PlayerListener(JavaPlugin plugin, FactionManager fm) {
 	this.fm=fm;
 	WorldGuardPlugin worldGuard = (WorldGuardPlugin) plugin.getServer().getPluginManager().getPlugin("WorldGuard");
     this.rgManager=worldGuard.getRegionManager(fm.getWorld());
-    start(plugin);
+    regionScheduler(plugin);
 }
 
 @EventHandler
@@ -48,7 +48,7 @@ public void onPlayerLeave(PlayerQuitEvent e) {
 		fm.finishRobbing(false);
 }
 
-private void start(JavaPlugin plugin) {
+private void regionScheduler(JavaPlugin plugin) {
 Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() { public void run() { if(fm.isRobbing()) {
 		Player p=Bukkit.getPlayer(fm.getLeader());
 		ApplicableRegionSet ar=rgManager.getApplicableRegions(p.getLocation());
