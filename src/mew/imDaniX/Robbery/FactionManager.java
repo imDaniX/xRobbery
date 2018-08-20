@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -20,7 +21,8 @@ private boolean robbing, adminIgnore, leaderDmg, policeTp;
 private World world;
 
 private int mafiaCount, policeCount, timer, robTime;
-private List<Integer> money;
+private List<Double> money;
+private List<String> successCmds, failCmds;
 
 private Economy econ;
 
@@ -48,8 +50,11 @@ private void init() {
 	robTime=cfg.getInt("robbery.time");
 	delay=cfg.getLong("robbery.delay");
 	lastRob=cfg.getLong("robbery.last_rob");
-	money=cfg.getIntegerList("robbery.money");
+	money=cfg.getDoubleList("robbery.money");
 	adminIgnore=cfg.getBoolean("robbery.admin_ignore");
+	
+	successCmds=cfg.getStringList("robbery.commands.success");
+	failCmds=cfg.getStringList("robbery.commands.fail");
 
 	mafiaLoc=Utils.stringToLoc(cfg.getString("mafia.loc"));
 	policeLoc=Utils.stringToLoc(cfg.getString("police.loc"));
@@ -72,12 +77,17 @@ public void startRobbing() {
 }
 
 public void finishRobbing(boolean type) {
+	List<String> cmds=failCmds;
 	if(type) {
-		int sum=Utils.listRandom(money);
+		double sum=Utils.listRandom(money);
 		Bukkit.broadcastMessage(getMessage("rob.finish.success").replace("{money}", sum+""));
 		econ.depositPlayer(Bukkit.getOfflinePlayer(findLeader()), sum);
+		cmds=successCmds;
 	} else
-	Bukkit.broadcastMessage(getMessage("rob.finish.failed"));
+		Bukkit.broadcastMessage(getMessage("rob.finish.failed"));
+	ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+	for(String cmd:cmds)
+		Bukkit.dispatchCommand(console, cmd);
 	robbing=false; lastRob=Utils.now();
 	config.getConfig().set("robbery.last_rob", lastRob);
 	config.saveConfig();

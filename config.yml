@@ -32,3 +32,9 @@ robbery:
     - 80000
     - 100000
     - 120000
+    #commands after rob finish
+    commands:
+        success:
+        - say Yeah!
+        fail:
+        - say Oh no!
