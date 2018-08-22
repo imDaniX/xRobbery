@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="C:/Users/123/Desktop/spigot-api-latest.jar"/>
 	<classpathentry kind="lib" path="C:/Users/123/Desktop/worldedit-bukkit-6.1.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/123/Desktop/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/123/Desktop/SimpleSit.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

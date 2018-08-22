@@ -24,6 +24,10 @@ private int mafiaCount, policeCount, timer, robTime;
 private List<Double> money;
 private List<String> successCmds, failCmds;
 
+private int confTime;
+private boolean confEffect;
+private int confDamage;
+
 private Economy econ;
 
 private CustomConfig config, messages;
@@ -36,6 +40,10 @@ public FactionManager(CustomConfig config, CustomConfig messages, Economy econ) 
 
 private void init() {
 	FileConfiguration cfg=config.getConfig();
+
+	confTime=cfg.getInt("confusion.time");
+	confEffect=cfg.getBoolean("confusion.effect");
+	confDamage=cfg.getInt("confusion.damage");
 
 	world=Bukkit.getWorld(cfg.getString("region.world")); 
 	bankRg=cfg.getString("region.bank_rg");
@@ -170,6 +178,9 @@ public void setLastRob(long lastRob) {
 }
 
 //Some getters
+public int getConfDamage() {return confDamage;}
+public int getConfTime() {return confTime;}
+public boolean doConfEffect() {return confEffect;}
 public boolean isPoliceTp() {return policeTp;}
 public boolean getLeaderDmg() {return leaderDmg;}
 public String getLeader() {return leader;}

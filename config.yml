@@ -19,7 +19,7 @@ mafia:
     #location for mafia's tp
     loc: world,0,0,0,0,0
 robbery:
-    #are admins ignored as perm-leader, mafia, police?
+    #players with xrob.ignored are ignored as mafia, police?
     admin_ignore: true
     #how long will robbery take? (seconds)
     time: 600
@@ -38,3 +38,10 @@ robbery:
         - say Yeah!
         fail:
         - say Oh no!
+confusion:
+    #how much damage is needed to confuse player?
+    damage: 7
+    #how long player cant stand up
+    time: 10
+    #do you need to cast confusion effect on player?
+    effect: true

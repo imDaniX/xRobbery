@@ -22,3 +22,7 @@ rob:
     not_leader: '&6&lxRobbery&8> &cВы не лидер фракции мафии!'
     count_fail: '&6&lxRobbery&8> &cНедостаточно игроков для начала ограбления!'
     already_on: '&6&lxRobbery&8> &cОграбление уже идёт!'
+confusion:
+    confused: '&6&lxRobbery&8> &cВы были оглушены на &e{time} сек&c!'
+    cooldown: '&6&lxRobbery&8> &cВы не можете встать ещё &e{time} сек&c!'
+    standup: '&6&lxRobbery&8> &aВы встали после оглушения!'

@@ -4,7 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import mew.imDaniX.Robbery.Commander;
+import mew.imDaniX.Robbery.Listeners.ConfusionListener;
+import mew.imDaniX.Robbery.Listeners.PlayerListener;
 import net.milkbowl.vault.economy.Economy;
 
 public class RobberyMain extends JavaPlugin {
@@ -19,6 +20,7 @@ public void onEnable() {
 	}
 	FactionManager fm=new FactionManager(new CustomConfig(this,"config"),new CustomConfig(this,"messages"), econ);
 	getCommand("xrobbery").setExecutor(new Commander(fm));
+	Bukkit.getPluginManager().registerEvents(new ConfusionListener(this, fm), this);
 	Bukkit.getPluginManager().registerEvents(new PlayerListener(this, fm), this);
 }
 
