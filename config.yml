@@ -45,3 +45,5 @@ confusion:
     time: 10
     #do you need to cast confusion effect on player?
     effect: true
+    #can confused player attack?
+    attack: true

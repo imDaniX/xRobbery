@@ -26,3 +26,4 @@ confusion:
     confused: '&6&lxRobbery&8> &cВы были оглушены на &e{time} сек&c!'
     cooldown: '&6&lxRobbery&8> &cВы не можете встать ещё &e{time} сек&c!'
     standup: '&6&lxRobbery&8> &aВы встали после оглушения!'
+    cant_attack: '&6&lxRobbery&8> &cВы оглушены и не можете атаковать других игроков!'

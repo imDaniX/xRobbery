@@ -26,6 +26,7 @@ private List<String> successCmds, failCmds;
 
 private int confTime;
 private boolean confEffect;
+private boolean confAttack;
 private int confDamage;
 
 private Economy econ;
@@ -43,6 +44,7 @@ private void init() {
 
 	confTime=cfg.getInt("confusion.time");
 	confEffect=cfg.getBoolean("confusion.effect");
+	confAttack=cfg.getBoolean("confusion.attack");
 	confDamage=cfg.getInt("confusion.damage");
 
 	world=Bukkit.getWorld(cfg.getString("region.world")); 
@@ -180,6 +182,7 @@ public void setLastRob(long lastRob) {
 //Some getters
 public int getConfDamage() {return confDamage;}
 public int getConfTime() {return confTime;}
+public boolean doConfAttack() {return confAttack;}
 public boolean doConfEffect() {return confEffect;}
 public boolean isPoliceTp() {return policeTp;}
 public boolean getLeaderDmg() {return leaderDmg;}
