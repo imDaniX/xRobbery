@@ -5,9 +5,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,6 +33,16 @@ private JavaPlugin plugin;
 public ConfusionListener(JavaPlugin plugin, FactionManager fm) {
 	this.fm=fm; this.plugin=plugin;
 	confusions=new HashMap<>();
+}
+
+@EventHandler
+public void onEntityFight(EntityDamageByEntityEvent e) {
+	if(fm.doConfAttack()) return;
+	Entity ent=e.getDamager();
+	if(confusions.containsKey(ent.getUniqueId())) {
+		e.setCancelled(true);
+		((Player)ent).sendMessage(fm.getMessage("confusion.cant_attack"));
+	}
 }
 
 //sit player if damage>=confDamage
@@ -62,8 +74,9 @@ public void onPlayerSit(PlayerSitEvent e) {
 		@Override
 		public void run() {
 			SimpleSitPlayer sitP=new SimpleSitPlayer(p);
-			if(sitP.isSitting()) 
+			if(sitP.isSitting()) {
 				sitP.setSitting(false);
+			}
 		}
 	}.runTaskLater(plugin, fm.getConfTime()*20+1);
 }
@@ -85,6 +98,7 @@ public void onPlayerStand(PlayerStopSittingEvent e) {
 		}.runTaskLater(plugin, 1);
 		e.setMessage(fm.getMessage("confusion.cooldown").replace("{time}", ""+conf.getTimeUntil(fm.getConfTime())));
 	} else {
+		confusions.remove(id);
 		e.setMessage(fm.getMessage("confusion.standup"));
 	}
 }
